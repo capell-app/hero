@@ -37,20 +37,62 @@ Screenshot contract: `docs/screenshots.json`.
 
 ![Insights consent priming capture](docs/screenshots/hero-consent-prime.png)
 
-- Insights consent priming capture (frontend, optional).
-- Hero home widget rendered on a public page (frontend, required).
+- Insights consent priming capture (frontend, supplementary evidence).
+- Hero home widget rendered on a public page (frontend, required evidence).
 
 ## Technical Shape
 
-- Service providers: `Capell\Hero\Providers\HeroServiceProvider`.
-- Filament classes: `HeroBackgroundSchema`, `HeroBackgroundThemeSchemaExtender`, `HeroBackgroundWidgetAssetSchemaExtender`, `HeroBackgroundWidgetSchemaExtender`.
-- Actions: `InstallHeroLayoutDefaultsAction`, `ResolveHeroBackgroundDataAction`, `ResolveHeroMediaDataAction`.
-- Data objects: `HeroAssetSlideData`, `HeroBackgroundData`, `HeroMediaData`, `HeroWidgetRenderData`.
-- Command signatures: `capell:hero-setup`.
-- Console command classes: `SetupCommand`.
-- Health checks: `Capell\Hero\Health\HeroHealthCheck`.
-- Blade views: `packages/hero/resources/views/components/hero/background.blade.php`, `packages/hero/resources/views/components/hero/content.blade.php`, `packages/hero/resources/views/components/hero/media.blade.php`, `packages/hero/resources/views/components/hero/related.blade.php`, `packages/hero/resources/views/components/hero/slide.blade.php`, `packages/hero/resources/views/components/hero/wrapper.blade.php`, `packages/hero/resources/views/components/widget/default.blade.php`, `packages/hero/resources/views/components/widget/hero.blade.php`.
-- Cache tags: `hero`.
+### Service providers
+
+- `Capell\Hero\Providers\HeroServiceProvider`
+
+### Filament classes
+
+- `HeroBackgroundSchema`
+- `HeroBackgroundThemeSchemaExtender`
+- `HeroBackgroundWidgetAssetSchemaExtender`
+- `HeroBackgroundWidgetSchemaExtender`
+
+### Actions
+
+- `InstallHeroLayoutDefaultsAction`
+- `ResolveHeroBackgroundDataAction`
+- `ResolveHeroMediaDataAction`
+
+### Data objects
+
+- `HeroAssetSlideData`
+- `HeroBackgroundData`
+- `HeroMediaData`
+- `HeroWidgetRenderData`
+
+### Command signatures
+
+- `capell:hero-setup`
+
+### Console command classes
+
+- `SetupCommand`
+
+### Health checks
+
+- `Capell\Hero\Health\HeroHealthCheck`
+
+### Blade views
+
+- `packages/hero/resources/views/components/hero/background.blade.php`
+- `packages/hero/resources/views/components/hero/content.blade.php`
+- `packages/hero/resources/views/components/hero/media.blade.php`
+- `packages/hero/resources/views/components/hero/related.blade.php`
+- `packages/hero/resources/views/components/hero/slide.blade.php`
+- `packages/hero/resources/views/components/hero/wrapper.blade.php`
+- `packages/hero/resources/views/components/widget/default.blade.php`
+- `packages/hero/resources/views/components/widget/hero.blade.php`
+
+### Cache tags
+
+- `hero`
+
 
 ## Data Model
 
@@ -61,7 +103,7 @@ This package has no schema impact. It registers runtime behaviour through `Capel
 - Required packages: `capell-app/admin`, `capell-app/core`, `capell-app/frontend`, `capell-app/layout-builder`.
 - Admin navigation: no admin page or resource contribution is declared.
 - Admin/editor extensions: none declared.
-- Permissions: none declared in `capell.json`.
+- Permissions: no package permission declarations or Shield gates detected; host access rules still apply.
 - Public routes: none declared.
 - Database changes: no package migrations declared.
 - Config: no package config files.
@@ -86,8 +128,8 @@ This package has no schema impact. It registers runtime behaviour through `Capel
 ## Quick Start
 
 1. Install the package: `composer require capell-app/hero`.
-2. Run the required setup: `php artisan capell:hero-setup`.
-3. Open the Hero home widget rendered on a public page and confirm the public output renders without admin state.
+2. Run the package setup: `php artisan capell:hero-setup`.
+3. Open `/` and confirm the public output renders without admin state.
 
 ## Next Steps
 
