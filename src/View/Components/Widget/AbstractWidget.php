@@ -13,12 +13,13 @@ use stdClass;
 
 abstract class AbstractWidget extends Component
 {
-    /** @var list<string> */
+    /** @var list<view-string> */
     private const array AllowedViews = [
         'capell-hero::components.widget.default',
         'capell-hero::components.widget.hero',
     ];
 
+    /** @var view-string */
     protected static string $defaultView = 'capell-hero::components.widget.default';
 
     protected bool $skipRender = false;
@@ -59,6 +60,7 @@ abstract class AbstractWidget extends Component
 
     protected function mountWidget(): void {}
 
+    /** @return view-string */
     private function componentView(): string
     {
         $viewFile = $this->widget->getViewFile();
