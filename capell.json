@@ -5,7 +5,7 @@
     "displayName": "Hero",
     "kind": "package",
     "capellApiVersion": "^1.0",
-    "version": "1.x-dev",
+    "version": "1.0.0",
     "description": "A polished, responsive home hero for every Capell theme — autoplay video or decorative overlay backgrounds, multi-slide carousel, and theme-level styling that pages inherit automatically.",
     "product": {
         "group": "Capell Foundation",
