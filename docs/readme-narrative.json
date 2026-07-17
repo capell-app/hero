@@ -1,0 +1,39 @@
+{
+    "whatThisPluginAdds": {
+        "text": "Hero adds a Layout Builder hero widget with page copy, actions, responsive images or video, multiple slides, and inherited theme background options.",
+        "evidence": [
+            "capell.json",
+            "src/View/Components/Widget/Hero.php",
+            "src/Actions/ResolveHeroBackgroundDataAction.php",
+            "src/Providers/HeroServiceProvider.php"
+        ]
+    },
+    "surfaceOutcome": {
+        "text": "Editors configure the hero through Layout Builder and theme or widget background fields, while visitors receive the responsive hero rendered by the active theme.",
+        "evidence": [
+            "docs/overview.admin.md",
+            "docs/screenshots.json",
+            "src/Filament/Extenders/HeroBackgroundWidgetSchemaExtender.php",
+            "tests/Feature/HeroWidgetViewTest.php"
+        ]
+    },
+    "whyItMatters": {
+        "developers": {
+            "text": "Prepared Data objects and resolution Actions keep media and background decisions outside Blade, and tests enforce query-free public rendering without editor metadata.",
+            "evidence": [
+                "src/Data/HeroWidgetRenderData.php",
+                "src/Actions/ResolveHeroMediaDataAction.php",
+                "tests/Feature/HeroAssetSlideDataTest.php",
+                "tests/Feature/HeroWidgetViewTest.php"
+            ]
+        },
+        "teams": {
+            "text": "Teams can establish reusable home-page defaults and still change copy, media, slides, and background treatment per widget without replacing unrelated page content.",
+            "evidence": [
+                "src/Actions/InstallHeroLayoutDefaultsAction.php",
+                "tests/Feature/HeroSetupCommandTest.php",
+                "tests/Feature/HeroBackgroundSchemaTest.php"
+            ]
+        }
+    }
+}
