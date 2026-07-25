@@ -46,7 +46,7 @@
     },
     "settings": [],
     "permissions": [],
-    "capabilities": [],
+    "capabilities": ["hero"],
     "security": {
         "riskTier": "low",
         "publicSurface": {

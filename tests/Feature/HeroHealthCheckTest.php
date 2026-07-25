@@ -83,7 +83,7 @@ it('declares the hero feature capabilities exposed by the public renderer', func
     /** @var array{capabilities: list<string>} $manifest */
     $manifest = json_decode((string) file_get_contents(__DIR__ . '/../../capell.json'), true, 512, JSON_THROW_ON_ERROR);
 
-    expect($manifest['capabilities'])->toBe([]);
+    expect($manifest['capabilities'])->toBe(['hero']);
 });
 
 it('declares cacheable public output with concrete invalidation sources', function (): void {
