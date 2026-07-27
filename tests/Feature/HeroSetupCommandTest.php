@@ -3,12 +3,14 @@
 declare(strict_types=1);
 
 use Capell\Core\Enums\LayoutEnum;
+use Capell\Core\Facades\CapellCore;
 use Capell\Core\Models\Layout;
 use Capell\Core\Models\Page;
 use Capell\Core\Models\Translation;
 use Capell\Core\Support\Creator\LayoutCreator;
 use Capell\Hero\Actions\InstallHeroLayoutDefaultsAction;
 use Capell\LayoutBuilder\Models\Widget;
+use Capell\LayoutBuilder\Support\Interceptors\Layouts\HomeLayoutInterceptor;
 
 it('installs compact natural home hero defaults', function (): void {
     resolve(LayoutCreator::class)->setup();
@@ -193,12 +195,13 @@ it('force updates an existing hero container without replacing custom home copy'
         ])
         ->create(['name' => 'Home']);
 
-    app()->bind(LayoutCreator::class, fn (): LayoutCreator => new class extends LayoutCreator
-    {
-        public function setup(): void {}
-    });
+    CapellCore::unregisterModelInterceptor(Layout::class, HomeLayoutInterceptor::class, LayoutEnum::Home);
 
-    $result = InstallHeroLayoutDefaultsAction::run(force: true);
+    try {
+        $result = InstallHeroLayoutDefaultsAction::run(force: true);
+    } finally {
+        CapellCore::registerModelInterceptor(Layout::class, HomeLayoutInterceptor::class, LayoutEnum::Home);
+    }
 
     $homeLayout->refresh();
     $page->load('translation');
