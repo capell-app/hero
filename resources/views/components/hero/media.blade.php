@@ -1,4 +1,4 @@
-@props ([
+@props([
     'alt' => '',
     'media' => null,
 ])
@@ -69,173 +69,140 @@
         >
             <span
                 data-hero-video-pause-icon
-                @class (['hidden' => ! $media->autoplay])
+                @class(['hidden' => ! $media->autoplay])
             >
-                @svg ('heroicon-o-pause', 'h-5 w-5')
+                @svg('heroicon-o-pause', 'h-5 w-5')
             </span>
             <span
                 data-hero-video-play-icon
-                @class (['hidden' => $media->autoplay])
+                @class(['hidden' => $media->autoplay])
             >
-                @svg ('heroicon-o-play', 'h-5 w-5')
+                @svg('heroicon-o-play', 'h-5 w-5')
             </span>
         </button>
     @endif
 
     @once
         <script>
-            ;(() => {
+            (() => {
                 const boot = () => {
-                    const videos = Array.from(
-                        document.querySelectorAll('[data-hero-video]'),
-                    )
+                    const videos = Array.from(document.querySelectorAll('[data-hero-video]'));
 
                     if (!videos.length) {
-                        return
+                        return;
                     }
 
-                    const reduceMotion =
-                        window.matchMedia?.('(prefers-reduced-motion: reduce)')
-                            .matches === true
+                    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
 
                     const syncButton = (video) => {
-                        const host = video.closest('.swiper-slide-inner')
-                        const button = host?.querySelector(
-                            '[data-hero-video-toggle]',
-                        )
+                        const host = video.closest('.swiper-slide-inner');
+                        const button = host?.querySelector('[data-hero-video-toggle]');
 
                         if (!button) {
-                            return
+                            return;
                         }
 
-                        const isPlaying = !video.paused && !video.ended
-                        const playIcon = button.querySelector(
-                            '[data-hero-video-play-icon]',
-                        )
-                        const pauseIcon = button.querySelector(
-                            '[data-hero-video-pause-icon]',
-                        )
+                        const isPlaying = !video.paused && !video.ended;
+                        const playIcon = button.querySelector('[data-hero-video-play-icon]');
+                        const pauseIcon = button.querySelector('[data-hero-video-pause-icon]');
 
                         button.setAttribute(
                             'aria-label',
-                            isPlaying
-                                ? button.dataset.labelPause
-                                : button.dataset.labelPlay,
-                        )
-                        button.setAttribute(
-                            'title',
-                            isPlaying
-                                ? button.dataset.labelPause
-                                : button.dataset.labelPlay,
-                        )
-                        button.setAttribute(
-                            'aria-pressed',
-                            isPlaying ? 'true' : 'false',
-                        )
-                        playIcon?.classList.toggle('hidden', isPlaying)
-                        pauseIcon?.classList.toggle('hidden', !isPlaying)
-                    }
+                            isPlaying ? button.dataset.labelPause : button.dataset.labelPlay,
+                        );
+                        button.setAttribute('title', isPlaying ? button.dataset.labelPause : button.dataset.labelPlay);
+                        button.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
+                        playIcon?.classList.toggle('hidden', isPlaying);
+                        pauseIcon?.classList.toggle('hidden', !isPlaying);
+                    };
 
                     const bindToggle = (video) => {
-                        const host = video.closest('.swiper-slide-inner')
-                        const button = host?.querySelector(
-                            '[data-hero-video-toggle]',
-                        )
+                        const host = video.closest('.swiper-slide-inner');
+                        const button = host?.querySelector('[data-hero-video-toggle]');
 
-                        if (
-                            !button ||
-                            button.dataset.heroVideoToggleReady === 'true'
-                        ) {
-                            return
+                        if (!button || button.dataset.heroVideoToggleReady === 'true') {
+                            return;
                         }
 
-                        button.dataset.heroVideoToggleReady = 'true'
+                        button.dataset.heroVideoToggleReady = 'true';
                         button.addEventListener('click', () => {
                             if (video.paused || video.ended) {
-                                video.dataset.heroVideoUserPaused = 'false'
-                                const play = video.play()
+                                video.dataset.heroVideoUserPaused = 'false';
+                                const play = video.play();
 
                                 if (play?.then) {
-                                    play.then(() => syncButton(video)).catch(
-                                        () => syncButton(video),
-                                    )
+                                    play.then(() => syncButton(video)).catch(() => syncButton(video));
 
-                                    return
+                                    return;
                                 }
 
-                                syncButton(video)
+                                syncButton(video);
 
-                                return
+                                return;
                             }
 
-                            video.dataset.heroVideoUserPaused = 'true'
-                            video.pause()
-                            syncButton(video)
-                        })
+                            video.dataset.heroVideoUserPaused = 'true';
+                            video.pause();
+                            syncButton(video);
+                        });
 
-                        video.addEventListener('play', () => syncButton(video))
-                        video.addEventListener('pause', () => syncButton(video))
-                        syncButton(video)
-                    }
+                        video.addEventListener('play', () => syncButton(video));
+                        video.addEventListener('pause', () => syncButton(video));
+                        syncButton(video);
+                    };
 
                     videos.forEach((video) => {
                         if (video.dataset.heroVideoReady === 'true') {
-                            return
+                            return;
                         }
 
-                        video.dataset.heroVideoReady = 'true'
-                        bindToggle(video)
+                        video.dataset.heroVideoReady = 'true';
+                        bindToggle(video);
 
                         if (reduceMotion) {
-                            video.pause()
-                            syncButton(video)
+                            video.pause();
+                            syncButton(video);
 
-                            return
+                            return;
                         }
 
-                        if (
-                            video.dataset.pauseOutOfView !== 'true' ||
-                            !('IntersectionObserver' in window)
-                        ) {
-                            return
+                        if (video.dataset.pauseOutOfView !== 'true' || !('IntersectionObserver' in window)) {
+                            return;
                         }
 
                         new IntersectionObserver(
                             (entries) => {
                                 entries.forEach((entry) => {
                                     if (entry.isIntersecting) {
-                                        if (
-                                            video.dataset
-                                                .heroVideoUserPaused === 'true'
-                                        ) {
-                                            return
+                                        if (video.dataset.heroVideoUserPaused === 'true') {
+                                            return;
                                         }
 
-                                        const play = video.play()
-                                        play?.catch(() => {})
+                                        const play = video.play();
+                                        play?.catch(() => {});
 
-                                        return
+                                        return;
                                     }
 
-                                    video.pause()
-                                    syncButton(video)
-                                })
+                                    video.pause();
+                                    syncButton(video);
+                                });
                             },
                             { threshold: 0.18 },
-                        ).observe(video)
-                    })
-                }
+                        ).observe(video);
+                    });
+                };
 
                 if (document.readyState === 'loading') {
                     document.addEventListener('DOMContentLoaded', boot, {
                         once: true,
-                    })
+                    });
 
-                    return
+                    return;
                 }
 
-                boot()
-            })()
+                boot();
+            })();
         </script>
     @endonce
 @endif

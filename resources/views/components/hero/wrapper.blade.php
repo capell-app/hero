@@ -1,4 +1,4 @@
-@props ([
+@props([
     'key',
     'total',
     'carouselAlign' => 'center',
@@ -44,11 +44,8 @@
     @if ($carouselTouch !== null)
         data-carousel-touch="{{ (int) $carouselTouch }}"
     @endif
-    style="
-        --swiper-pagination-bottom: 1.5rem;
-        --swiper-pagination-bullet-inactive-color: #fff;
-    "
-    @class ([
+    style="--swiper-pagination-bottom: 1.5rem; --swiper-pagination-bullet-inactive-color: #fff"
+    @class([
         'capell-wrapper',
         'grid min-h-full w-full',
         'swiper relative' => $total > 1,
@@ -65,13 +62,13 @@
                     class="{{ $carouselButtonClass ?? $carouselArrowClass }} swiper-button-prev left-6"
                     aria-label="{{ __('generic.previous') }}"
                 >
-                    @svg ('heroicon-o-chevron-left', 'swiper-button-svg')
+                    @svg('heroicon-o-chevron-left', 'swiper-button-svg')
                 </button>
                 <button
                     class="{{ $carouselButtonClass ?? $carouselArrowClass }} swiper-button-next right-6"
                     aria-label="{{ __('generic.next') }}"
                 >
-                    @svg ('heroicon-o-chevron-right', 'swiper-button-svg')
+                    @svg('heroicon-o-chevron-right', 'swiper-button-svg')
                 </button>
             @endif
 

@@ -1,4 +1,4 @@
-@props ([
+@props([
     'background' => null,
     'instanceKey' => null,
 ])
@@ -20,7 +20,7 @@
 
     <div
         aria-hidden="true"
-        @class ([
+        @class([
             'hero-background pointer-events-none absolute inset-0 overflow-hidden',
             'hero-background--' . $background->overlayStyle,
         ])
@@ -28,12 +28,7 @@
     >
         <div class="hero-background__base"></div>
 
-        <svg
-            class="hero-background__overlay"
-            viewBox="0 0 1440 840"
-            preserveAspectRatio="none"
-            focusable="false"
-        >
+        <svg class="hero-background__overlay" viewBox="0 0 1440 840" preserveAspectRatio="none" focusable="false">
             <defs>
                 <linearGradient
                     id="{{ $gradientId }}"
@@ -42,14 +37,8 @@
                     y1="0"
                     y2="1"
                 >
-                    <stop
-                        offset="0%"
-                        stop-color="var(--hero-accent-color, #315f8f)"
-                    />
-                    <stop
-                        offset="100%"
-                        stop-color="var(--hero-accent-color-alt, #7aa0c4)"
-                    />
+                    <stop offset="0%" stop-color="var(--hero-accent-color, #315f8f)" />
+                    <stop offset="100%" stop-color="var(--hero-accent-color-alt, #7aa0c4)" />
                 </linearGradient>
                 <radialGradient
                     id="{{ $radialId }}"
@@ -57,23 +46,12 @@
                     cy="18%"
                     r="58%"
                 >
-                    <stop
-                        offset="0%"
-                        stop-color="var(--hero-accent-color-alt, #7aa0c4)"
-                    />
-                    <stop
-                        offset="100%"
-                        stop-color="var(--hero-accent-color, #315f8f)"
-                        stop-opacity="0"
-                    />
+                    <stop offset="0%" stop-color="var(--hero-accent-color-alt, #7aa0c4)" />
+                    <stop offset="100%" stop-color="var(--hero-accent-color, #315f8f)" stop-opacity="0" />
                 </radialGradient>
             </defs>
 
-            <rect
-                width="1440"
-                height="840"
-                fill="var(--hero-background-color, #f4f7fb)"
-            />
+            <rect width="1440" height="840" fill="var(--hero-background-color, #f4f7fb)" />
             <path
                 class="hero-background__mesh"
                 d="M-60 160 C 230 40, 338 276, 620 134 S 1084 20, 1500 162 L 1500 -40 L -60 -40 Z"
@@ -96,32 +74,14 @@
                 fill="none"
                 stroke="currentColor"
             />
-            <g
-                class="hero-background__grid"
-                fill="none"
-                stroke="currentColor"
-            >
-                <path
-                    d="M0 120 H1440 M0 240 H1440 M0 360 H1440 M0 480 H1440 M0 600 H1440 M0 720 H1440"
-                />
-                <path
-                    d="M120 0 V840 M240 0 V840 M360 0 V840 M480 0 V840 M600 0 V840 M720 0 V840 M840 0 V840 M960 0 V840 M1080 0 V840 M1200 0 V840 M1320 0 V840"
-                />
+            <g class="hero-background__grid" fill="none" stroke="currentColor">
+                <path d="M0 120 H1440 M0 240 H1440 M0 360 H1440 M0 480 H1440 M0 600 H1440 M0 720 H1440" />
+                <path d="M120 0 V840 M240 0 V840 M360 0 V840 M480 0 V840 M600 0 V840 M720 0 V840 M840 0 V840 M960 0 V840 M1080 0 V840 M1200 0 V840 M1320 0 V840" />
             </g>
-            <g
-                class="hero-background__contours"
-                fill="none"
-                stroke="currentColor"
-            >
-                <path
-                    d="M872 166 C1008 100 1164 124 1248 232 C1334 344 1300 488 1188 572 C1054 672 844 634 770 486 C704 354 748 224 872 166Z"
-                />
-                <path
-                    d="M922 236 C1012 194 1116 210 1170 280 C1228 354 1204 452 1130 508 C1040 576 900 548 850 448 C806 358 840 276 922 236Z"
-                />
-                <path
-                    d="M238 512 C346 456 472 476 536 562 C602 650 574 760 482 816 C370 884 208 834 162 718 C124 624 156 554 238 512Z"
-                />
+            <g class="hero-background__contours" fill="none" stroke="currentColor">
+                <path d="M872 166 C1008 100 1164 124 1248 232 C1334 344 1300 488 1188 572 C1054 672 844 634 770 486 C704 354 748 224 872 166Z" />
+                <path d="M922 236 C1012 194 1116 210 1170 280 C1228 354 1204 452 1130 508 C1040 576 900 548 850 448 C806 358 840 276 922 236Z" />
+                <path d="M238 512 C346 456 472 476 536 562 C602 650 574 760 482 816 C370 884 208 834 162 718 C124 624 156 554 238 512Z" />
             </g>
         </svg>
     </div>

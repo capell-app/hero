@@ -2,7 +2,7 @@
     use Capell\Frontend\Facades\Frontend;
 @endphp
 
-@props ([
+@props([
     'backgroundAttachment' => '',
     'backgroundColor' => '',
     'backgroundImage' => null,
@@ -21,14 +21,12 @@
     'title' => null,
 ])
 {{-- format-ignore-start --}}
-<div
-    {{
-        $attributes->class([
-            'swiper-slide hero-item relative w-full min-w-0 max-w-full overflow-hidden',
-            'swiper-slide-selected' => $first,
-        ])
-    }}
->
+<div {{
+    $attributes->class([
+        'swiper-slide hero-item relative w-full min-w-0 max-w-full overflow-hidden',
+        'swiper-slide-selected' => $first,
+    ])
+}}>
     <div
         @class([
             'swiper-slide-inner relative flex min-h-full w-full min-w-0 max-w-full overflow-hidden',
@@ -43,8 +41,8 @@
             ),
         ])
         @style([
-              "background-color: {$backgroundColor}" => $backgroundColor,
-            ])
+            "background-color: {$backgroundColor}" => $backgroundColor,
+        ])
         }}
     >
         <x-capell-hero::hero.background :background="$heroBackground" :instance-key="$backgroundKey" />
@@ -76,9 +74,7 @@
         @endif
 
         @if ($backgroundOverlay)
-            <div
-                class="pointer-events-none absolute inset-0 bg-black/50 mix-blend-multiply dark:bg-gray-900/60"
-            ></div>
+            <div class="pointer-events-none absolute inset-0 bg-black/50 mix-blend-multiply dark:bg-gray-900/60"></div>
         @endif
 
         @if ($slot->isNotEmpty())

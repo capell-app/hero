@@ -1,6 +1,6 @@
-@aware (['carouselArrows'])
+@aware(['carouselArrows'])
 
-@props ([
+@props([
     'color',
     'content_class' => 'hero-content prose w-full max-w-[min(62rem,100%)]',
     'headingSize' => 'h1',
@@ -32,10 +32,10 @@
     @if ($title)
         <{{ $headingSize }}
             @class([
-            'hero-heading text-balance',
-            'text-2xl md:text-4xl' => $size === 'sm',
-            'text-3xl md:text-5xl' => $size === 'md',
-            'text-4xl md:text-5xl' => $size === 'lg',
+                'hero-heading text-balance',
+                'text-2xl md:text-4xl' => $size === 'sm',
+                'text-3xl md:text-5xl' => $size === 'md',
+                'text-4xl md:text-5xl' => $size === 'lg',
             ])
         >
             @if ($url)
