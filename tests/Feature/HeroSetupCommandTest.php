@@ -31,7 +31,7 @@ it('installs compact natural home hero defaults', function (): void {
 
     Widget::query()->where('key', 'hero')->delete();
 
-    test()->artisan('capell:hero-setup')->assertSuccessful();
+    capell_artisan('capell:hero-setup')->assertSuccessful();
 
     $homeLayout = Layout::query()->where('key', LayoutEnum::Home->value)->firstOrFail();
     $heroWidget = Widget::query()->where('key', 'hero')->firstOrFail();
@@ -93,8 +93,8 @@ it('does not duplicate hero defaults on repeated setup', function (): void {
 
     Widget::query()->where('key', 'hero')->delete();
 
-    test()->artisan('capell:hero-setup')->assertSuccessful();
-    test()->artisan('capell:hero-setup')->assertSuccessful();
+    capell_artisan('capell:hero-setup')->assertSuccessful();
+    capell_artisan('capell:hero-setup')->assertSuccessful();
 
     $homeLayout = Layout::query()->where('key', LayoutEnum::Home->value)->firstOrFail();
     $containers = $homeLayout->containers ?? [];
@@ -151,7 +151,7 @@ it('installs hero defaults when home layout containers are null', function (): v
 
     Widget::query()->where('key', 'hero')->delete();
 
-    test()->artisan('capell:hero-setup')->assertSuccessful();
+    capell_artisan('capell:hero-setup')->assertSuccessful();
 
     $homeLayout = Layout::query()->where('key', LayoutEnum::Home->value)->firstOrFail();
     $containers = $homeLayout->containers ?? [];
