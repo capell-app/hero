@@ -10,8 +10,6 @@ Hero adds a Layout Builder hero widget with page copy, actions, responsive image
 
 Editors configure the hero through Layout Builder and theme or widget background fields, while visitors receive the responsive hero rendered by the active theme.
 
-Evidence: [`capell.json`](capell.json), [`src/View/Components/Widget/Hero.php`](src/View/Components/Widget/Hero.php), [`src/Actions/ResolveHeroBackgroundDataAction.php`](src/Actions/ResolveHeroBackgroundDataAction.php), [`src/Providers/HeroServiceProvider.php`](src/Providers/HeroServiceProvider.php), [`docs/overview.admin.md`](docs/overview.admin.md), [`docs/screenshots.json`](docs/screenshots.json), [`src/Filament/Extenders/HeroBackgroundWidgetSchemaExtender.php`](src/Filament/Extenders/HeroBackgroundWidgetSchemaExtender.php), [`tests/Feature/HeroWidgetViewTest.php`](tests/Feature/HeroWidgetViewTest.php).
-
 Status details:
 
 - Status: Available
@@ -26,8 +24,6 @@ Status details:
 **For developers:** Prepared Data objects and resolution Actions keep media and background decisions outside Blade, and tests enforce query-free public rendering without editor metadata.
 
 **For teams:** Teams can establish reusable home-page defaults and still change copy, media, slides, and background treatment per widget without replacing unrelated page content.
-
-Evidence: [`src/Data/HeroWidgetRenderData.php`](src/Data/HeroWidgetRenderData.php), [`src/Actions/ResolveHeroMediaDataAction.php`](src/Actions/ResolveHeroMediaDataAction.php), [`tests/Feature/HeroAssetSlideDataTest.php`](tests/Feature/HeroAssetSlideDataTest.php), [`tests/Feature/HeroWidgetViewTest.php`](tests/Feature/HeroWidgetViewTest.php), [`src/Actions/InstallHeroLayoutDefaultsAction.php`](src/Actions/InstallHeroLayoutDefaultsAction.php), [`tests/Feature/HeroSetupCommandTest.php`](tests/Feature/HeroSetupCommandTest.php), [`tests/Feature/HeroBackgroundSchemaTest.php`](tests/Feature/HeroBackgroundSchemaTest.php).
 
 ## Screens And Workflow
 
@@ -142,6 +138,5 @@ This package has no schema impact. It registers runtime behaviour through `Capel
 - [Capell documentation design system](../../docs/DESIGN_SYSTEM.md)
 - [Capell and package ERD notes](../../docs/erd/capell-and-package-erds.md)
 - Related packages: [Layout Builder](../layout-builder/README.md).
-- Focused tests: `vendor/bin/pest packages/hero/tests --configuration=phpunit.xml`.
 
 <!-- prettier-ignore-end -->
