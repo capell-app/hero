@@ -12,18 +12,22 @@ use Capell\Hero\Enums\HeroBackgroundOverlayOpacity;
 use Capell\Hero\Enums\HeroBackgroundOverlayStyle;
 use Capell\Hero\Enums\HeroMediaMode;
 use Capell\Hero\Enums\HeroMediaPreload;
+use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Utilities\Get;
+use Illuminate\Contracts\Support\Htmlable;
 
 final class HeroBackgroundSchema
 {
     /**
-     * @return array<int, mixed>
+     * @return array<int, Component | Action | ActionGroup | string | Htmlable>
      */
     public static function theme(): array
     {
@@ -42,7 +46,7 @@ final class HeroBackgroundSchema
     }
 
     /**
-     * @return array<int, mixed>
+     * @return array<int, Component | Action | ActionGroup | string | Htmlable>
      */
     public static function widget(): array
     {
@@ -61,7 +65,7 @@ final class HeroBackgroundSchema
     }
 
     /**
-     * @return array<int, mixed>
+     * @return array<int, Component | Action | ActionGroup | string | Htmlable>
      */
     public static function asset(): array
     {
@@ -80,11 +84,11 @@ final class HeroBackgroundSchema
     }
 
     /**
-     * @param  array<int, mixed>  $extraModeComponents
+     * @param  array<int, Component>  $extraModeComponents
      */
     private static function fieldset(array $extraModeComponents, bool $withMetaStatePath = false): Fieldset
     {
-        $modeSelect = $extraModeComponents[0] ?? null;
+        $modeSelect = $extraModeComponents[0];
 
         $fieldset = Fieldset::make(__('capell-hero::form.hero_background.label'))
             ->columns(['default' => 1, 'md' => 2, 'xl' => 3])
