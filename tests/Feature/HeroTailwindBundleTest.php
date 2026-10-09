@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Capell\Core\Facades\CapellCore;
 use Capell\FoundationTheme\Support\Tailwind\TailwindAssetsGenerator;
 use Capell\Hero\Providers\HeroServiceProvider;
+use Capell\Tests\Support\OwnedTestbenchSkeleton;
 use Illuminate\Filesystem\Filesystem;
 
 /*
@@ -16,11 +17,12 @@ use Illuminate\Filesystem\Filesystem;
  */
 
 it('imports hero.css into the compiled frontend entrypoint when the hero package is installed', function (): void {
+    OwnedTestbenchSkeleton::useStorageProject(app());
     $targetPath = storage_path('framework/testing/capell-hero-tailwind/frontend.css');
 
     CapellCore::forcePackageInstalled(HeroServiceProvider::$packageName);
 
-    (new TailwindAssetsGenerator(new Filesystem))->generate($targetPath);
+    new TailwindAssetsGenerator(new Filesystem)->generate($targetPath);
 
     $entrypoint = (new Filesystem)->get($targetPath);
 
