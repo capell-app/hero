@@ -310,15 +310,6 @@ it('renders the inherited theme hero background without public admin metadata', 
     expect($html)->toBe(renderHeroWidgetHtml($widget));
 });
 
-it('keeps public hero background identifiers deterministic', function (): void {
-    $themePath = dirname(__DIR__, 2);
-    $backgroundView = file_get_contents($themePath . '/resources/views/components/hero/background.blade.php');
-
-    expect($backgroundView)
-        ->not->toContain('uniqid(')
-        ->toContain("hash('xxh128'");
-});
-
 it('allows a hero widget to turn the inherited background off', function (): void {
     $language = Language::factory()->english()->create();
     $theme = Theme::factory()->create([

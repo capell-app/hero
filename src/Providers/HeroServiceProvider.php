@@ -28,6 +28,7 @@ final class HeroServiceProvider extends AbstractPackageServiceProvider
 
     public static PackageTypeEnum $type = PackageTypeEnum::Package;
 
+    #[Override]
     public function configurePackage(Package $package): void
     {
         $package
@@ -38,12 +39,19 @@ final class HeroServiceProvider extends AbstractPackageServiceProvider
             ]);
     }
 
+    #[Override]
     public function packageBooted(): void
     {
-        $this->registerTailwindSources();
+        // Blade aliases and schema-extender tags also support pre-install discovery.
         $this->registerViews();
         $this->registerBladeComponents();
         $this->registerSchemaExtenders();
+    }
+
+    #[Override]
+    protected function bootInstalledRuntime(): void
+    {
+        $this->registerTailwindSources();
     }
 
     #[Override]

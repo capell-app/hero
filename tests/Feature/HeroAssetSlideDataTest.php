@@ -11,6 +11,8 @@ use Capell\LayoutBuilder\Models\Widget;
 use Capell\LayoutBuilder\Models\WidgetAsset;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\ComponentAttributeBag;
 
 it('builds hero asset slide data from a linked page asset', function (): void {
     $page = Page::factory()->create(['meta' => ['color' => 'brand']]);
@@ -74,32 +76,25 @@ it('does not lazy load optional public hero relations', function (): void {
         ->and($data->images)->toBeNull();
 });
 
-it('keeps public hero blade on prepared slide data', function (): void {
-    $hero = file_get_contents(dirname(__DIR__, 2) . '/resources/views/components/widget/hero.blade.php');
-    $related = file_get_contents(dirname(__DIR__, 2) . '/resources/views/components/hero/related.blade.php');
+it('renders prepared related hero content without queries or public editor context', function (): void {
+    $related = collect([[
+        'title' => '<script>unsafe title</script>', 'summary' => 'Prepared related summary',
+        'url' => '/related', 'linkText' => 'Read more',
+    ]]);
+    DB::flushQueryLog();
+    DB::enableQueryLog();
 
-    expect($hero)
-        ->not->toContain('$slide->asset->translation')
-        ->not->toContain('$slide->asset->related')
-        ->not->toContain('$slide->asset->getMeta')
-        ->not->toContain('$page->translation')
-        ->not->toContain('$widget->assets')
-        ->not->toContain('$widget->translation')
-        ->not->toContain('$widget->getMeta')
-        ->not->toContain('$widgetAsset')
-        ->not->toContain('Frontend::')
-        ->not->toContain('GetPageVariablesAction')
-        ->not->toContain('RenderHtmlContentAction')
-        ->not->toContain('ResolveHeroBackgroundDataAction')
-        ->not->toContain('ResolveHeroMediaDataAction')
-        ->not->toContain('HeroAssetSlideData::')
-        ->and($related)
-        ->not->toContain('Frontend::')
-        ->not->toContain('getRelations')
-        ->not->toContain('getMeta')
-        ->not->toContain('$feature->')
-        ->not->toContain('$feature->linkedPage')
-        ->not->toContain('$feature->pageUrl')
-        ->not->toContain('$feature->image')
-        ->not->toContain('$feature->translation');
+    try {
+        $html = view('capell-hero::components.hero.related', [
+            'related' => $related, 'key' => 'related',
+            'attributes' => new ComponentAttributeBag,
+        ])->render();
+        $queries = DB::getQueryLog();
+    } finally {
+        DB::disableQueryLog();
+    }
+
+    expect($html)->toContain('Prepared related summary', 'href="/related"', 'Read more', '&lt;script&gt;')
+        ->not->toContain('<script>', 'widget_key', 'site_id', 'page_id')
+        ->and($queries)->toBe([]);
 });

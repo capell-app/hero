@@ -31,9 +31,6 @@ Screenshot contract: `docs/screenshots.json`.
 
 ![Hero home widget rendered on a public page](docs/screenshots/hero-home-widget.png)
 
-![Insights consent priming capture](docs/screenshots/hero-consent-prime.png)
-
-- Insights consent priming capture (frontend, supplementary evidence).
 - Hero home widget rendered on a public page (frontend, required evidence).
 
 ## Technical Shape

@@ -6,23 +6,6 @@
     "outputDirectory": "packages/hero/docs/screenshots",
     "entries": [
         {
-            "id": "hero-consent-prime",
-            "title": "Insights consent priming capture.",
-            "package": "hero",
-            "surface": "frontend",
-            "user": false,
-            "colorSchemes": ["light"],
-            "targetType": "frontend-url",
-            "target": null,
-            "url": "/",
-            "click": "text=Reject non-essential",
-            "waitFor": "body",
-            "required": false,
-            "notes": "Runner-only warm-up capture that dismisses the Insights consent banner before marketplace-facing Hero screenshots are taken.",
-            "useCase": "The screenshot runner sets anonymous visitor consent state so Hero captures do not include analytics consent chrome.",
-            "screenshotPath": "packages/hero/docs/screenshots/hero-consent-prime.png"
-        },
-        {
             "id": "hero-home-widget",
             "title": "Hero home widget rendered on a public page.",
             "package": "hero",
