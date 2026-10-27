@@ -35,6 +35,16 @@ return [
         ],
     ],
     'hero_media' => [
+        'use_custom' => 'Use custom media here',
+        'upload_help' => [
+            'custom_asset' => 'These saved uploads are used at their matching screen sizes. Custom slide media can replace a disabled widget base.',
+            'custom' => 'These saved uploads are used at their matching screen sizes. An upstream Off mode still disables media.',
+            'inherit' => 'Inherited media is used. Uploads saved here are retained but ignored until you choose Custom media.',
+            'off' => 'Media is off. Uploads saved here are retained but ignored until you choose Custom media.',
+        ],
+        'theme_inheritance' => 'Theme media supplies the widget default. Off disables media for widgets inheriting from this theme.',
+        'widget_inheritance' => 'Inherit uses the theme media. If the theme is Off, widget media is disabled even in Custom mode.',
+        'asset_inheritance' => 'Inherit uses the widget media, then the theme media. An upstream Off mode disables the inherited base.',
         'label' => 'Hero media',
         'uploads_label' => 'Responsive hero media',
         'mode' => 'Hero media',

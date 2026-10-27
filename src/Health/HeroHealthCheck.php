@@ -53,7 +53,7 @@ final class HeroHealthCheck implements ChecksExtensionHealth
         $isRegistered = $this->isWidgetComponentRegistered();
 
         return new DoctorCheckResultData(
-            label: 'Hero widget component',
+            label: 'Hero: widget registered',
             passed: $isRegistered,
             message: $isRegistered
                 ? 'The capell::widget.hero Blade component is registered.'
@@ -61,6 +61,7 @@ final class HeroHealthCheck implements ChecksExtensionHealth
             remediation: $isRegistered
                 ? null
                 : 'Ensure HeroServiceProvider boots and registers the hero widget Blade component.',
+            id: 'legacy.hero.widget.component',
         );
     }
 
@@ -72,7 +73,7 @@ final class HeroHealthCheck implements ChecksExtensionHealth
         $resolves = $this->viewNamespaceResolves();
 
         return new DoctorCheckResultData(
-            label: 'Hero view namespace',
+            label: 'Hero: templates registered',
             passed: $resolves,
             message: $resolves
                 ? 'The capell-hero view namespace resolves the hero widget view.'
@@ -80,6 +81,7 @@ final class HeroHealthCheck implements ChecksExtensionHealth
             remediation: $resolves
                 ? null
                 : 'Ensure HeroServiceProvider registers the capell-hero view namespace and ships its views.',
+            id: 'legacy.hero.view.namespace',
         );
     }
 
@@ -98,7 +100,7 @@ final class HeroHealthCheck implements ChecksExtensionHealth
         $isSeeded = $this->hasSeededHomeLayoutState();
 
         return new DoctorCheckResultData(
-            label: 'Hero home layout defaults',
+            label: 'Hero: home page layout configured',
             passed: $isSeeded,
             message: $isSeeded
                 ? 'The home layout has the Hero and page-content default widgets.'
@@ -106,6 +108,7 @@ final class HeroHealthCheck implements ChecksExtensionHealth
             remediation: $isSeeded
                 ? null
                 : 'Run capell:hero-setup --force to install the Hero-managed home layout defaults.',
+            id: 'legacy.hero.home.layout.defaults',
         );
     }
 

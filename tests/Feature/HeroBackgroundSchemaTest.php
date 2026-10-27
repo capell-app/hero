@@ -14,11 +14,15 @@ use Capell\Hero\Filament\Extenders\HeroBackgroundWidgetAssetSchemaExtender;
 use Capell\Hero\Filament\Extenders\HeroBackgroundWidgetSchemaExtender;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Fieldset;
+use Filament\Schemas\Concerns\InteractsWithSchemas;
+use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
+use Livewire\Component;
 
 test('theme background media fields can be built with a non spatie media factory', function (): void {
     app()->bind(MediaFieldFactory::class, static fn (): MediaFieldFactory => new class implements MediaFieldFactory
     {
+        #[Override]
         public function make(string $name): TextInput
         {
             return TextInput::make($name . '_id');
@@ -66,3 +70,34 @@ it('labels hero background and media options from enums', function (): void {
         ->and(HeroMediaMode::Custom->getLabel())->toBe(__('capell-hero::form.hero_media.mode_options.custom'))
         ->and(HeroMediaPreload::Metadata->getLabel())->toBe(__('capell-hero::form.hero_media.preload_options.metadata'));
 });
+
+it('offers a local custom media action without clearing saved uploads in every form', function (string $context, string $prefix): void {
+    $host = new class extends Component implements HasSchemas
+    {
+        use InteractsWithSchemas;
+
+        /** @var array<string, mixed> */
+        public array $data = [];
+    };
+    $components = HeroBackgroundSchema::{$context}();
+    $schema = Schema::make($host)->statePath('data')->components($components);
+    $schema->fill();
+    if ($prefix === '') {
+        $host->data['hero_media'] = ['mode' => 'inherit'];
+    } else {
+        $host->data['meta'] = ['hero_media' => ['mode' => 'inherit']];
+    }
+
+    $uploads = $components[2]->getChildSchema()->getComponents();
+    $field = $uploads[0];
+    $field->state('saved-video.mp4');
+
+    $actions = $field->getHintActions();
+    expect($actions)->toHaveCount(1);
+    $action = array_values($actions)[0];
+    $action->call();
+    expect(data_get($host->data, $prefix . 'hero_media.mode'))->toBe('custom')
+        ->and($field->getState())->toBe('saved-video.mp4')
+        ->and($field->getHelperTextId())->not->toBeNull()
+        ->and($components[1]->getChildSchema()->getComponents()[1]->isVisible())->toBeTrue();
+})->with([['theme', ''], ['widget', ''], ['asset', 'meta.']]);

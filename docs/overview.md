@@ -21,6 +21,10 @@ In **Layout Builder**, as a Hero widget you can add and edit like any other widg
 - Choose inherited, disabled, or custom media for a Hero. Custom media supports separate desktop, tablet, and mobile images and MP4 or WebM video uploads.
 - For custom video, you can control autoplay, looping, muted playback, pause-when-out-of-view, and preload behaviour. Provide a responsive image as a useful visual fallback, then preview the public page at each breakpoint before publishing.
 
+## Media uploads and modes
+
+Each upload explains whether local files are in use. Choose **Use custom media here** beside an upload to activate Custom mode for that theme, widget or slide. Switching to Inherit or Off retains saved files. Desktop, tablet and mobile uploads retain their existing fallback behaviour. Widget Inherit uses theme media; a theme set to Off also disables Custom widget media. Slide Inherit uses the resolved widget base; a Custom slide can replace that disabled base.
+
 ---
 
 For developers: see the [README](../README.md).

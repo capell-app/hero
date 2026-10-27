@@ -122,7 +122,13 @@ This package has no schema impact. It registers runtime behaviour through `Capel
 
 1. Install the package: `composer require capell-app/hero`.
 2. Run the package setup: `php artisan capell:hero-setup`.
-3. Open `/` and confirm the public output renders without admin state.
+3. Run `php artisan list` and verify the package command signatures are registered.
+
+## Upgrading
+
+No manual steps between minor versions.
+
+Read [CHANGELOG.md](CHANGELOG.md) before upgrading.
 
 ## Next Steps
 
