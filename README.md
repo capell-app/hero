@@ -93,7 +93,7 @@ This package has no schema impact. It registers runtime behaviour through `Capel
 
 ## Install Impact
 
-- Required packages: `capell-app/admin`, `capell-app/core`, `capell-app/frontend`, `capell-app/layout-builder`.
+- Required packages: `capell-app/admin`, `capell-app/core`, `capell-app/frontend`, `capell-app/layout-builder`, `capell-app/theme-foundation`.
 - Admin navigation: no admin page or resource contribution is declared.
 - Admin/editor extensions: none declared.
 - Permissions: no package permission declarations or Shield gates detected; host access rules still apply.
@@ -107,7 +107,7 @@ This package has no schema impact. It registers runtime behaviour through `Capel
 
 ## Common Pitfalls
 
-- Keep required Capell packages on compatible v4 releases: `capell-app/admin`, `capell-app/core`, `capell-app/frontend`, `capell-app/layout-builder`.
+- Keep required Capell packages on compatible v4 releases: `capell-app/admin`, `capell-app/core`, `capell-app/frontend`, `capell-app/layout-builder`, `capell-app/theme-foundation`.
 - Keep public Blade and cached HTML free of authoring markers, model IDs, permissions, signed editor URLs, and lazy database queries.
 - Custom write integrations must preserve invalidation for `hero` cache tags.
 
@@ -140,6 +140,6 @@ Read [CHANGELOG.md](CHANGELOG.md) before upgrading.
 - [Capell content language plan](../../docs/CONTENT_LANGUAGE_PLAN.md)
 - [Capell documentation design system](../../docs/DESIGN_SYSTEM.md)
 - [Capell and package ERD notes](../../docs/erd/capell-and-package-erds.md)
-- Related packages: [Layout Builder](../layout-builder/README.md).
+- Related packages: [Layout Builder](../layout-builder/README.md), [Theme Foundation](../theme-foundation/README.md).
 
 <!-- prettier-ignore-end -->

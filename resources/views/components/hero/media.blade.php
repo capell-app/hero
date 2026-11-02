@@ -170,18 +170,31 @@
                             return;
                         }
 
+                        // Only resume what was intended to play: autoplay, or
+                        // a video that was playing when it left the viewport.
+                        video.dataset.heroVideoResume = video.autoplay ? 'true' : 'false';
+
                         new IntersectionObserver(
                             (entries) => {
                                 entries.forEach((entry) => {
                                     if (entry.isIntersecting) {
-                                        if (video.dataset.heroVideoUserPaused === 'true') {
+                                        if (
+                                            video.dataset.heroVideoUserPaused === 'true' ||
+                                            video.dataset.heroVideoResume !== 'true'
+                                        ) {
                                             return;
                                         }
 
                                         const play = video.play();
-                                        play?.catch(() => {});
+                                        play?.then?.(() => syncButton(video)).catch(() => syncButton(video));
 
                                         return;
+                                    }
+
+                                    if (!video.paused) {
+                                        video.dataset.heroVideoResume = 'true';
+                                    } else if (video.dataset.heroVideoUserPaused === 'true' || !video.autoplay) {
+                                        video.dataset.heroVideoResume = 'false';
                                     }
 
                                     video.pause();
