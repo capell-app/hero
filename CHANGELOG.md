@@ -4,6 +4,8 @@ All notable changes to `capell-app/hero` will be documented in this file.
 
 ## Unreleased
 
+- Apply the active Content Security Policy nonce to inline interaction scripts.
+
 ### 2026-06-04
 
 - Declared Hero's admin dependency and admin surface in Composer and `capell.json` to match the shipped Filament schema extenders.

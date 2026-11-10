@@ -16,6 +16,7 @@ use Capell\LayoutBuilder\Models\Widget;
 use Capell\LayoutBuilder\Models\WidgetAsset;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Foundation\Vite;
 use Illuminate\Support\Facades\DB;
 
 function renderHeroWidgetHtml(Widget $widget): string
@@ -432,9 +433,12 @@ it('renders responsive hero media without exposing editor metadata', function ()
         ->withTheme($theme)
         ->withPage($page);
 
+    resolve(Vite::class)->useCspNonce('test-nonce');
     $html = renderHeroWidgetHtml($widget);
 
     expect($html)
+        ->toContain('<script nonce="test-nonce">')
+        ->not->toContain('<script>')
         ->toContain('data-hero-video')
         ->toContain('data-hero-video-toggle')
         ->toContain('Pause hero video')

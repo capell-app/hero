@@ -83,139 +83,58 @@
     @endif
 
     @once
-        <script>
-            (() => {
-                const boot = () => {
-                    const videos = Array.from(document.querySelectorAll('[data-hero-video]'));
+        <script{!! ($nonce = app(\Illuminate\Foundation\Vite::class)->cspNonce()) !== null && $nonce !== '' ? ' nonce="' . e($nonce) . '"' : '' !!}>
+            (() => { const boot = () => { const videos =
+            Array.from(document.querySelectorAll('[data-hero-video]')); if
+            (!videos.length) { return; } const reduceMotion =
+            window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ===
+            true; const syncButton = (video) => { const host =
+            video.closest('.swiper-slide-inner'); const button =
+            host?.querySelector('[data-hero-video-toggle]'); if (!button) {
+            return; } const isPlaying = !video.paused && !video.ended; const
+            playIcon = button.querySelector('[data-hero-video-play-icon]');
+            const pauseIcon =
+            button.querySelector('[data-hero-video-pause-icon]');
+            button.setAttribute( 'aria-label', isPlaying ?
+            button.dataset.labelPause : button.dataset.labelPlay, );
+            button.setAttribute('title', isPlaying ? button.dataset.labelPause :
+            button.dataset.labelPlay); button.setAttribute('aria-pressed',
+            isPlaying ? 'true' : 'false'); playIcon?.classList.toggle('hidden',
+            isPlaying); pauseIcon?.classList.toggle('hidden', !isPlaying); };
+            const bindToggle = (video) => { const host =
+            video.closest('.swiper-slide-inner'); const button =
+            host?.querySelector('[data-hero-video-toggle]'); if (!button ||
+            button.dataset.heroVideoToggleReady === 'true') { return; }
+            button.dataset.heroVideoToggleReady = 'true';
+            button.addEventListener('click', () => { if (video.paused ||
+            video.ended) { video.dataset.heroVideoUserPaused = 'false'; const
+            play = video.play(); if (play?.then) { play.then(() =>
+            syncButton(video)).catch(() => syncButton(video)); return; }
+            syncButton(video); return; } video.dataset.heroVideoUserPaused =
+            'true'; video.pause(); syncButton(video); });
+            video.addEventListener('play', () => syncButton(video));
+            video.addEventListener('pause', () => syncButton(video));
+            syncButton(video); }; videos.forEach((video) => { if
+            (video.dataset.heroVideoReady === 'true') { return; }
+            video.dataset.heroVideoReady = 'true'; bindToggle(video); if
+            (reduceMotion) { video.pause(); syncButton(video); return; } if
+            (video.dataset.pauseOutOfView !== 'true' || !('IntersectionObserver'
+            in window)) { return; } // Only resume what was intended to play:
+            autoplay, or // a video that was playing when it left the viewport.
+            video.dataset.heroVideoResume = video.autoplay ? 'true' : 'false';
+            new IntersectionObserver( (entries) => { entries.forEach((entry) =>
+            { if (entry.isIntersecting) { if ( video.dataset.heroVideoUserPaused
+            === 'true' || video.dataset.heroVideoResume !== 'true' ) { return; }
+            const play = video.play(); play?.then?.(() =>
+            syncButton(video)).catch(() => syncButton(video)); return; } if
+            (!video.paused) { video.dataset.heroVideoResume = 'true'; } else if
+            (video.dataset.heroVideoUserPaused === 'true' || !video.autoplay) {
+            video.dataset.heroVideoResume = 'false'; } video.pause();
+            syncButton(video); }); }, { threshold: 0.18 }, ).observe(video); });
+            }; if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', boot, { once: true,
+            }); return; } boot(); })();
+            </script>
 
-                    if (!videos.length) {
-                        return;
-                    }
-
-                    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
-
-                    const syncButton = (video) => {
-                        const host = video.closest('.swiper-slide-inner');
-                        const button = host?.querySelector('[data-hero-video-toggle]');
-
-                        if (!button) {
-                            return;
-                        }
-
-                        const isPlaying = !video.paused && !video.ended;
-                        const playIcon = button.querySelector('[data-hero-video-play-icon]');
-                        const pauseIcon = button.querySelector('[data-hero-video-pause-icon]');
-
-                        button.setAttribute(
-                            'aria-label',
-                            isPlaying ? button.dataset.labelPause : button.dataset.labelPlay,
-                        );
-                        button.setAttribute('title', isPlaying ? button.dataset.labelPause : button.dataset.labelPlay);
-                        button.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
-                        playIcon?.classList.toggle('hidden', isPlaying);
-                        pauseIcon?.classList.toggle('hidden', !isPlaying);
-                    };
-
-                    const bindToggle = (video) => {
-                        const host = video.closest('.swiper-slide-inner');
-                        const button = host?.querySelector('[data-hero-video-toggle]');
-
-                        if (!button || button.dataset.heroVideoToggleReady === 'true') {
-                            return;
-                        }
-
-                        button.dataset.heroVideoToggleReady = 'true';
-                        button.addEventListener('click', () => {
-                            if (video.paused || video.ended) {
-                                video.dataset.heroVideoUserPaused = 'false';
-                                const play = video.play();
-
-                                if (play?.then) {
-                                    play.then(() => syncButton(video)).catch(() => syncButton(video));
-
-                                    return;
-                                }
-
-                                syncButton(video);
-
-                                return;
-                            }
-
-                            video.dataset.heroVideoUserPaused = 'true';
-                            video.pause();
-                            syncButton(video);
-                        });
-
-                        video.addEventListener('play', () => syncButton(video));
-                        video.addEventListener('pause', () => syncButton(video));
-                        syncButton(video);
-                    };
-
-                    videos.forEach((video) => {
-                        if (video.dataset.heroVideoReady === 'true') {
-                            return;
-                        }
-
-                        video.dataset.heroVideoReady = 'true';
-                        bindToggle(video);
-
-                        if (reduceMotion) {
-                            video.pause();
-                            syncButton(video);
-
-                            return;
-                        }
-
-                        if (video.dataset.pauseOutOfView !== 'true' || !('IntersectionObserver' in window)) {
-                            return;
-                        }
-
-                        // Only resume what was intended to play: autoplay, or
-                        // a video that was playing when it left the viewport.
-                        video.dataset.heroVideoResume = video.autoplay ? 'true' : 'false';
-
-                        new IntersectionObserver(
-                            (entries) => {
-                                entries.forEach((entry) => {
-                                    if (entry.isIntersecting) {
-                                        if (
-                                            video.dataset.heroVideoUserPaused === 'true' ||
-                                            video.dataset.heroVideoResume !== 'true'
-                                        ) {
-                                            return;
-                                        }
-
-                                        const play = video.play();
-                                        play?.then?.(() => syncButton(video)).catch(() => syncButton(video));
-
-                                        return;
-                                    }
-
-                                    if (!video.paused) {
-                                        video.dataset.heroVideoResume = 'true';
-                                    } else if (video.dataset.heroVideoUserPaused === 'true' || !video.autoplay) {
-                                        video.dataset.heroVideoResume = 'false';
-                                    }
-
-                                    video.pause();
-                                    syncButton(video);
-                                });
-                            },
-                            { threshold: 0.18 },
-                        ).observe(video);
-                    });
-                };
-
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', boot, {
-                        once: true,
-                    });
-
-                    return;
-                }
-
-                boot();
-            })();
-        </script>
     @endonce
 @endif

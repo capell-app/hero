@@ -8,7 +8,7 @@
     "version": "1.0.0",
     "description": "A polished, responsive home hero for every Capell theme: autoplay video or decorative overlay backgrounds, multi-slide carousel, and theme-level styling that pages inherit automatically.",
     "product": {
-        "group": "Capell Foundation",
+        "group": "Capell Essentials",
         "tier": "free",
         "bundle": "foundation"
     },
@@ -66,10 +66,10 @@
             "plaintextJustifications": []
         },
         "publicOutput": {
-            "cacheSafe": true,
             "forbidAuthoringSurface": true,
             "forbidSecrets": true,
-            "forbidPublicBladeQueries": true
+            "forbidPublicBladeQueries": true,
+            "cacheSafe": true
         },
         "externalHttpClients": {
             "requiresTimeouts": false,
@@ -165,6 +165,22 @@
     },
     "marketplace": {
         "summary": "A polished, responsive home hero for every Capell theme: autoplay video or decorative overlay backgrounds, multi-slide carousel, and theme-level styling that pages inherit automatically.",
+        "problem": "Editors need a developer to build a prominent page introduction with imagery and actions.",
+        "outcome": "A page has a theme-rendered introduction that editors can configure.",
+        "faq": [
+            {
+                "question": "Can a hero contain multiple slides?",
+                "answer": "Yes. Editors can configure multiple slides in Layout Builder."
+            },
+            {
+                "question": "Which media can the hero show?",
+                "answer": "The widget supports responsive images or video."
+            },
+            {
+                "question": "Where does the background come from?",
+                "answer": "Editors can use theme or widget background fields, including inherited theme options."
+            }
+        ],
         "screenshots": [
             {
                 "path": "docs/assets/marketplace/extension-card.jpg",
