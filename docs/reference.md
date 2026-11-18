@@ -6,7 +6,7 @@ Developer reference for `capell-app/hero`. Start with the [README](../README.md)
 
 ## Package Details
 
-Hero is an **Available**, **No schema impact** Capell package in the **Capell Essentials** product group. It ships as `capell-app/hero` and extends these surfaces: admin, frontend, console.
+Hero is an **Available** Capell package in the **Capell Essentials** product group. It ships as `capell-app/hero` and extends these surfaces: admin, frontend, console.
 
 - Status: Available
 - Tier: free

@@ -6,7 +6,7 @@
     "kind": "package",
     "capellApiVersion": "^1.0",
     "version": "1.0.0",
-    "description": "A polished, responsive home hero for every Capell theme: autoplay video or decorative overlay backgrounds, multi-slide carousel, and theme-level styling that pages inherit automatically.",
+    "description": "A page-top banner with a headline over a picture, looping video or rotating slides, with one background set for your theme.",
     "product": {
         "group": "Capell Essentials",
         "tier": "free",
@@ -47,7 +47,7 @@
     },
     "settings": [],
     "permissions": [],
-    "capabilities": ["hero"],
+    "capabilities": [],
     "security": {
         "riskTier": "low",
         "publicSurface": {
@@ -164,33 +164,38 @@
         "privateDocsRequested": false
     },
     "marketplace": {
-        "summary": "A polished, responsive home hero for every Capell theme: autoplay video or decorative overlay backgrounds, multi-slide carousel, and theme-level styling that pages inherit automatically.",
-        "problem": "Editors need a developer to build a prominent page introduction with imagery and actions.",
-        "outcome": "A page has a theme-rendered introduction that editors can configure.",
+        "summary": "Give the top of your pages a headline over a photo, looping video or rotating slides, with separate media for phones.",
+        "description": "Put your headline over a photo, a video or a set of slides at the top of a page. Upload one version of your media for big screens and another for phones, and add a picture to show while a video loads. Videos are MP4 or WebM files of your own, as YouTube and Vimeo links aren't supported. By default a video plays silently on a loop and pauses once it scrolls out of sight. Slides move on every eight seconds and hold still under the mouse. A theme-wide background keeps every page's banner matching, and any banner or slide can choose its own picture.",
+        "problem": "The top of the homepage looks flat, and matching every page's banner means setting each one up by hand.",
+        "outcome": "Each page's banner matches your site's look, with video on big screens and a photo on phones if you choose.",
         "faq": [
             {
-                "question": "Can a hero contain multiple slides?",
-                "answer": "Yes. Editors can configure multiple slides in Layout Builder."
+                "question": "Can I play a video behind the headline?",
+                "answer": "Yes, from files you upload yourself, in MP4 or WebM, with separate versions for big screens and phones. A YouTube or Vimeo link can't be used."
             },
             {
-                "question": "Which media can the hero show?",
-                "answer": "The widget supports responsive images or video."
+                "question": "Does the video play with sound, and can visitors stop it?",
+                "answer": "By default it plays without sound, loops and pauses itself once someone scrolls past, and an editor can change each of those. Visitors always get a pause button. If you also upload a picture, it shows while the video loads."
             },
             {
-                "question": "Where does the background come from?",
-                "answer": "Editors can use theme or widget background fields, including inherited theme options."
+                "question": "Can I have a few slides instead of one picture?",
+                "answer": "Yes. Slides change every eight seconds and wait while a mouse rests on them. With no slides added, the banner shows the hero title and text saved on the page itself."
+            },
+            {
+                "question": "Do I set a background on every page's banner?",
+                "answer": "No. Set a background for your theme and every page's banner follows it. One banner or one slide can still have its own picture, or none at all."
             }
         ],
         "screenshots": [
             {
                 "path": "docs/assets/marketplace/extension-card.jpg",
-                "alt": "Hero extension preview image",
-                "caption": "Hero extension preview"
+                "alt": "Marketplace card titled Hero with two sample homepages showing a banner over a wave shape beside a three-step diagram",
+                "caption": "The card that represents Hero on its Marketplace listing."
             },
             {
                 "path": "docs/screenshots/hero-home-widget.png",
-                "alt": "Capell public homepage rendering the Hero widget",
-                "caption": "Render a clean public homepage hero with inherited theme styling and deterministic setup data."
+                "alt": "Public homepage with a wide banner reading Welcome to Capell over a soft wave pattern, below a search bar and shortcut hints",
+                "caption": "A banner across the top of a page, taking its look from the theme."
             }
         ],
         "categories": ["admin", "console", "foundation", "frontend"]

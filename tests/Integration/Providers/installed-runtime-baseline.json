@@ -4,8 +4,8 @@
     "scenarios": {
         "default": {
             "source": {
-                "ref": "HEAD",
-                "commit": "adac26b4ce1e9e1de545f68a1ff272ff73111696",
+                "ref": "origin/main",
+                "commit": "a6931e60ff901ee9a0ff072979ce1cdaf7771066",
                 "providers": {
                     "Providers/HeroServiceProvider.php": "469d521754124622c0b7fad96340c21175ab33fd95b450e867459adc8b0ca1a5"
                 },
@@ -106,11 +106,9 @@
                 ],
                 "views": {
                     "92ee60cf85c3a80b9d4d0b4c333dab95": [
-                        "<package>/src/Providers/../../resources/views/components"
+                        "<package>/resources/views/components"
                     ],
-                    "capell-hero": [
-                        "<package>/src/Providers/../../resources/views"
-                    ]
+                    "capell-hero": ["<package>/resources/views"]
                 }
             },
             "uninstalledSurfaces": {
@@ -149,11 +147,9 @@
                 },
                 "views": {
                     "92ee60cf85c3a80b9d4d0b4c333dab95": [
-                        "<package>/src/Providers/../../resources/views/components"
+                        "<package>/resources/views/components"
                     ],
-                    "capell-hero": [
-                        "<package>/src/Providers/../../resources/views"
-                    ]
+                    "capell-hero": ["<package>/resources/views"]
                 }
             },
             "removableUninstalledSurfaces": []

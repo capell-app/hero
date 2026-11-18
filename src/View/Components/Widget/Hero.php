@@ -29,6 +29,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Override;
 
 class Hero extends AbstractWidget
@@ -130,10 +131,10 @@ class Hero extends AbstractWidget
         $baseHeroMedia = $heroMediaResolver->base($theme, $this->widget);
         $slides = $this->slides($page, $site, $theme, $color, $baseHeroBackground, $baseHeroMedia);
         $pageHeroContentHtml = is_string($rawPageHero) && $rawPageHero !== ''
-            ? RenderHtmlContentAction::run((string) __($rawPageHero, $pageVariables), array_filter(['page' => $page, 'site' => $site]))
+            ? RenderHtmlContentAction::run($this->replacePlaceholders($rawPageHero, $pageVariables), array_filter(['page' => $page, 'site' => $site]))
             : null;
         $pageHeroTitle = is_string($rawPageHeroTitle) && $rawPageHeroTitle !== ''
-            ? (string) __($rawPageHeroTitle, $pageVariables)
+            ? $this->replacePlaceholders($rawPageHeroTitle, $pageVariables)
             : null;
         $widgetFallbackTitle = $this->translatedString(data_get($widgetTranslation, 'title'), $pageVariables);
         $resolvedPaginationResults = $paginationResults instanceof LengthAwarePaginator ? $paginationResults : null;
@@ -161,6 +162,7 @@ class Hero extends AbstractWidget
                 'small' => '24em',
                 'medium' => '36em',
                 'large' => '60vh',
+                'full' => 'full',
                 default => null,
             },
             mediaPosition: $this->stringMeta('media_position', 'right') ?? 'right',
@@ -360,7 +362,34 @@ class Hero extends AbstractWidget
      */
     private function translatedString(mixed $value, array $variables): ?string
     {
-        return is_string($value) && $value !== '' ? (string) __($value, $variables) : null;
+        return is_string($value) && $value !== '' ? $this->replacePlaceholders($value, $variables) : null;
+    }
+
+    /**
+     * Editor-authored copy is never looked up as a translation key; only the
+     * page, site and title placeholders are substituted.
+     *
+     * @param  array<string, mixed>  $variables
+     */
+    private function replacePlaceholders(string $value, array $variables): string
+    {
+        $replacements = [];
+
+        foreach ($variables as $name => $replacement) {
+            if (! is_scalar($replacement)) {
+                continue;
+            }
+
+            $name = (string) $name;
+            $replacement = (string) $replacement;
+            $replacements[':' . $name] = $replacement;
+            $replacements[':' . Str::ucfirst($name)] = Str::ucfirst($replacement);
+            $replacements[':' . Str::upper($name)] = Str::upper($replacement);
+        }
+
+        uksort($replacements, static fn (string $a, string $b): int => strlen($b) <=> strlen($a));
+
+        return strtr($value, $replacements);
     }
 
     private function loadedRelation(?Model $model, string $relation): mixed

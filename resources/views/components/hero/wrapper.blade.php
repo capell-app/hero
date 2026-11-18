@@ -60,13 +60,13 @@
             @if ($carouselArrows)
                 <button
                     class="{{ $carouselButtonClass ?? $carouselArrowClass }} swiper-button-prev left-6"
-                    aria-label="{{ __('generic.previous') }}"
+                    aria-label="{{ __('capell-frontend::generic.previous') }}"
                 >
                     @svg('heroicon-o-chevron-left', 'swiper-button-svg')
                 </button>
                 <button
                     class="{{ $carouselButtonClass ?? $carouselArrowClass }} swiper-button-next right-6"
-                    aria-label="{{ __('generic.next') }}"
+                    aria-label="{{ __('capell-frontend::generic.next') }}"
                 >
                     @svg('heroicon-o-chevron-right', 'swiper-button-svg')
                 </button>

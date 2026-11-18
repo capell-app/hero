@@ -53,7 +53,7 @@
                         :background-position="$slide->backgroundPosition"
                         :background-attachment="$slide->backgroundAttachment"
                         :background-repeat="$slide->backgroundRepeat"
-                        :background-overlay="$slide->backgroundImage && $slide->title ? $slide->color : ''"
+                        :background-overlay="$slide->backgroundImage && (filled($slide->title) || filled($slide->contentHtml) || filled($slide->linkText)) ? $slide->color : ''"
                         :first="$loop->first"
                         :total="$hero->total"
                         :title="$slide->title"
@@ -88,7 +88,7 @@
                                 >
                                     {{ $slide->contentHtml }}
 
-                                    @if ($slide->linkText)
+                                    @if ($slide->linkText && filled($slide->url))
                                         <a
                                             class="text-link hover:text-primary font-medium no-underline focus:underline"
                                             href="{{ $slide->url }}"
@@ -144,7 +144,6 @@
                                             <x-capell::media
                                                 format="webp"
                                                 :media="$media"
-                                                :alt="$slide->title"
                                                 :width="420"
                                                 :fetchpriority="$loop->parent->first ? 'high' : null"
                                                 @class([
@@ -164,7 +163,7 @@
                                             <x-capell::media
                                                 format="webp"
                                                 :media="$media"
-                                                :alt="$slide->title"
+                                                :alt="$media instanceof \Capell\Core\Models\Media ? ($media->getAltText() ?? '') : ''"
                                                 @class([
                                                     'hero-slide-img h-full max-h-[40vh] w-full max-w-full min-w-0 object-cover object-center',
                                                     'lg:max-h-[400px]' => $hero->mediaSize !== 'compact',

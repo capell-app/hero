@@ -1,6 +1,6 @@
 {
     "name": "capell-app/hero",
-    "description": "Foundation hero section for Capell: responsive video/image backgrounds, decorative overlays, carousel slides, and inheritable theme styling, rendered safely for anonymous visitors.",
+    "description": "Hero banner widget for Capell with headlines over images, looping MP4 or WebM video or rotating slides, separate phone media and a theme-wide background.",
     "keywords": [
         "capell",
         "hero",

@@ -2,28 +2,28 @@
 
 <!-- prettier-ignore-start -->
 
-## What It Does
+Behind your headline, a video can play without sound. On a phone, visitors get a still photo if that's what you uploaded for small screens. This is the big banner at the top of a page, often called a hero, and it works just as well with one picture or a few rotating slides.
 
-Hero adds a Layout Builder hero widget with page copy, actions, responsive images or video, multiple slides, and inherited theme background options.
+Set a background for your theme, the overall look of your site, and every page's banner follows it. One banner or one slide can still have its own picture, or none at all.
+
+Videos are ordinary files you upload yourself (MP4 or WebM), with separate versions for big screens and phones. A YouTube or Vimeo link can't be used. The editor's defaults are that the video starts on its own, loops, stays silent and pauses by itself once someone scrolls past, and you can change each one. A pause button is there for anyone who'd like it still. If you upload a picture too, visitors see it while the video loads.
+
+Slides change every eight seconds and wait while a mouse rests on them. With no slides added, the banner shows the hero title and text saved on the page itself.
 
 - **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/extensions/hero).
 - **Licence:** Check the licence terms on the [Capell Marketplace listing](https://capell.app/extensions/hero).
 - **Requires:** `PHP ^8.4`, `capell-app/admin ^1.0`, `capell-app/core ^1.0.66`, `capell-app/frontend ^1.0`, `capell-app/layout-builder ^1.0`, `capell-app/theme-foundation ^1.0`, `lorisleiva/laravel-actions ^2.8`, `spatie/laravel-package-tools ^1.0`.
 - **Install:** `composer require capell-app/hero`.
 
-Editors configure the hero through Layout Builder and theme or widget background fields, while visitors receive the responsive hero rendered by the active theme.
-
-## Who It Is For
-
-**For developers:** Prepared Data objects and resolution Actions keep media and background decisions outside Blade, and tests enforce query-free public rendering without editor metadata.
-
-**For teams:** Teams can establish reusable home-page defaults and still change copy, media, slides, and background treatment per widget without replacing unrelated page content.
-
 ## Quick Start
 
 1. Install the package: `composer require capell-app/hero`.
 2. Run the package setup: `php artisan capell:hero-setup`.
 3. Run `php artisan list` and verify the package command signatures are registered.
+
+## For Developers
+
+Prepared Data objects and resolution Actions keep media and background decisions outside Blade, and tests enforce query-free public rendering without editor metadata.
 
 ## Configure
 
