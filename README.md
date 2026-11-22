@@ -10,14 +10,14 @@ Videos are ordinary files you upload yourself (MP4 or WebM), with separate versi
 
 Slides change every eight seconds and wait while a mouse rests on them. With no slides added, the banner shows the hero title and text saved on the page itself.
 
-- **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/extensions/hero).
-- **Licence:** Check the licence terms on the [Capell Marketplace listing](https://capell.app/extensions/hero).
+- **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/marketplace/extensions/hero).
+- **Licence:** Check the licence terms on the [Capell Marketplace listing](https://capell.app/marketplace/extensions/hero).
 - **Requires:** `PHP ^8.4`, `capell-app/admin ^1.0`, `capell-app/core ^1.0.66`, `capell-app/frontend ^1.0`, `capell-app/layout-builder ^1.0`, `capell-app/theme-foundation ^1.0`, `lorisleiva/laravel-actions ^2.8`, `spatie/laravel-package-tools ^1.0`.
-- **Install:** `composer require capell-app/hero`.
+- **Install:** `composer require capell-app/hero:@beta`.
 
 ## Quick Start
 
-1. Install the package: `composer require capell-app/hero`.
+1. Install the package: `composer require capell-app/hero:@beta`.
 2. Run the package setup: `php artisan capell:hero-setup`.
 3. Run `php artisan list` and verify the package command signatures are registered.
 

@@ -24,7 +24,8 @@ In **Layout Builder**, as a Hero widget you can add and edit like any other widg
 
 ## Good to know
 
-- There is nothing to switch on; the Hero widget appears in the block list. Run `capell:hero-setup --force` only when you need to install or rebuild the Hero-managed home-layout defaults.
+- There is nothing to switch on; the Hero widget appears in the block list. Run `capell:hero-setup` to install the Hero-managed home-layout defaults, and `capell:hero-setup --force` only when you need to rebuild them.
+- Neither form is read-only, and both can rewrite the Home layout. Without `--force`, an existing Home layout keeps its containers only when it already has a **hero** container; otherwise setup rewrites it exactly as `--force` does, described below. Either way, back up the Home layout first. When the layout is kept, setup still ensures the Hero widget exists, adds the page content widget if it is missing, and fills neutral starter text on home pages that setup itself created. With `--force`, the Home layout is rewritten to a full-width **hero** container holding the Hero widget and a **main** container holding only the page content widget. Any other containers, and any other widgets you added to **main**, are removed from that layout. There is no dedicated restore, so review every page that uses it afterwards.
 - Set shared background colour, overlay style, overlay opacity, and accent colours in the theme. A widget can override those defaults, and an individual hero slide can override the widget.
 - Choose inherited, disabled, or custom media for a Hero. Custom media supports separate desktop, tablet, and mobile images and MP4 or WebM video uploads.
 - For custom video, you can control autoplay, looping, muted playback, pause-when-out-of-view, and preload behaviour. Provide a responsive image as a useful visual fallback, then preview the public page at each breakpoint before publishing.
