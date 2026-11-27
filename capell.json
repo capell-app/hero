@@ -6,6 +6,7 @@
     "kind": "package",
     "capellApiVersion": "^1.0",
     "version": "1.0.0",
+    "launchStatus": "shipped",
     "description": "A page-top banner with a headline over a picture, looping video or rotating slides, with one background set for your theme.",
     "product": {
         "group": "Capell Essentials",
